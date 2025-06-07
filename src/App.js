@@ -7,12 +7,26 @@ import {
 } from "@mui/material";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
+import Table from "./Table";
+import {sortData}  from "./util";
+import LineGraph from "./LineGraph";
+
 import './App.css';
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo]= useState({});
+  const [tableData, setTableData]=useState([]);
+
+  useEffect(()=>
+  {
+    fetch("https://disease.sh/v3/covid-19/all")
+    .then(response => response.json())
+    .then(data =>{
+      setCountryInfo(data);
+    })
+  },[]);
 
   useEffect(() => {
     const getCountriesData = async () => {
@@ -23,7 +37,8 @@ function App() {
             name: country.country,
             value: country.countryInfo.iso2,
           }));
-
+          const sortedData = sortData(data);
+          setTableData(sortedData);
           setCountries(countries);
         });
     };
@@ -35,7 +50,7 @@ function App() {
     const countryCode = event.target.value;
     setCountry(countryCode);
 
-    const url= countryCode=='worldwide'? 'https://disease.sh/v3/covid-19/all':'https://disease.sh/v3/covid-19/countries/${countryCode}';
+    const url= countryCode ==='worldwide'? 'https://disease.sh/v3/covid-19/all':`https://disease.sh/v3/covid-19/countries/${countryCode}`;
 
     await fetch(url)
     .then(response=> response.json())
@@ -62,7 +77,7 @@ function App() {
       </div>
 
       <div className="app__stats">
-        <InfoBox title="Coronavirus cases" cases={countryInfo.todayCases }total={countryInfo.cases}/>
+        <InfoBox title="Coronavirus cases" cases={countryInfo.todayCases}total={countryInfo.cases}/>
 
         <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered}/>
 
@@ -78,9 +93,10 @@ function App() {
 <Card className="app__right">
   <CardContent>
     <h3>Live Cases by Country</h3>
-    {/*table*/}
+    <Table countries={tableData}></Table>
 
     <h3>Worldwide New Cases</h3>
+    <LineGraph/>
     {/*graph*/}
 
 
