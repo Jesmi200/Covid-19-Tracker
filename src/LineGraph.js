@@ -48,8 +48,11 @@ const options = {
     x: {
       type: "time",
       time: {
-        format: "MM/DD/YY",
+        unit:"month",
         tooltipFormat: "MMM d, yyyy",
+        displayFormats:{
+          month: "MMM",
+        }
       },
       ticks: {
         color: "#666",
@@ -80,7 +83,7 @@ const buildChartData = (data, casesType = "cases") => {
     if (lastDataPoint !== undefined && data[casesType][date] !== undefined) {
       
       const newDataPoint = {
-        x: date, x: new Date(date),
+         x: new Date(date),
         y: data[casesType][date] - lastDataPoint,
       };
       chartData.push(newDataPoint);
@@ -92,7 +95,7 @@ const buildChartData = (data, casesType = "cases") => {
 };
 
 // LineGraph Component
-function LineGraph({ casesType = "cases" }) {
+function LineGraph({ casesType = "cases" ,...props}) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -107,7 +110,7 @@ function LineGraph({ casesType = "cases" }) {
   }, [casesType]);
 
   return (
-    <div style={{ height: "400px" }}>
+    <div className={props.className} style={{ height: "400px" }}>
       {data?.length > 0 && (
         <Line
           data={{
