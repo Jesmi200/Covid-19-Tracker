@@ -117,7 +117,6 @@ function App() {
       </div>
 
 
-  
   <Map
     casesType={casesType}
     countries={mapCountries}
@@ -127,18 +126,18 @@ function App() {
   
 </div>
 <Card className="app__right">
-  <CardContent>
+  <CardContent className="right-content">
+    <div className="table-container">
     <h3>Live Cases by Country</h3>
     <Table countries={tableData}></Table>
- 
+      </div>
+    <div className="chart-container">
     <h3 className="app__graphtitle">Worldwide New{casesType}</h3>
     <LineGraph className="app__graph" casesType={casesType}/>
-  
-
-
-  </CardContent>
+  </div></CardContent>
 </Card>
 </div>
+
   );
 }
 

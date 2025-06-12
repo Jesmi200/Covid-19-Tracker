@@ -1,9 +1,11 @@
 *{
-  margin: 0;
+  margin: 0; 
 }
 
 body{
   background-color: #f5f6fa;
+  height: 100%; /* ensure full height */
+  width: 100%;
 }
 
 .app{
@@ -27,8 +29,12 @@ body{
 }
 
 .app__left{
-  flex: 0 0 75%;
+  flex: 0 0 70%;
   margin-right: 12px;
+   display: flex;
+  flex-direction: column;
+  height:990px;
+  
 }
 
 .app__stats{
@@ -42,14 +48,21 @@ body{
   }
 }
 
-.app__right{
+.app__right {
   display: flex;
   flex-direction: column;
+  height: 720px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
 }
-.app__right .MuiCardContent-root{
+
+.app__right .MuiCardContent-root {
   display: flex;
   flex-direction: column;
-  flex-grow:0.5 ;
+  flex-grow: 1;  /* Let it expand fully */
+  height: 100%;
 }
 
 .app__graph{
@@ -58,4 +71,23 @@ body{
 .app__graphtitle{
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.table-container {
+  flex: 70% 50 0%;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.chart-container {
+  flex: 30% 0 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
 }

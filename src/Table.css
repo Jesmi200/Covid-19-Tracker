@@ -1,13 +1,15 @@
 .table{
     margin-top: 20px;
     overflow: scroll;
-    height: 400px;
     color: #6a5d5d;
+    border-collapse: collapse;
+    wdith:100%
 }
 
 .table tr{
     display: flex;
     justify-content: space-between;
+    width:100%;
 }
 
 .table td{
