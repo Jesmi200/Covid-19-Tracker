@@ -2,8 +2,8 @@
 
 A dynamic and responsive COVID-19 Tracker built using **React JS** that visualizes real-time coronavirus data, including global and country-wise statistics for total cases, recoveries, and deaths. The dashboard also includes interactive maps and trend graphs for deeper insights.
 
-![App Screenshot](C:\Users\acer\OneDrive\Desktop\Projects\Covid19Tracker\photos\Screenshot 2025-06-12 172448.png)
-C:\Users\acer\OneDrive\Desktop\Projects\Covid19Tracker\photos\pic2.png
+![App Screenshot][pic1.png)
+pic2.png
 
 ## 🚀 Features
 
